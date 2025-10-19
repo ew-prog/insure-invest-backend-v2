@@ -1,20 +1,19 @@
-import Lead from '../models/Lead.js';
-
-export const getLeads = async (req, res) => {
-  try {
-    const leads = await Lead.find();
-    res.json(leads);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-};
+import Lead from "../models/Lead.js"
 
 export const createLead = async (req, res) => {
   try {
-    const lead = new Lead(req.body);
-    await lead.save();
-    res.status(201).json(lead);
-  } catch (err) {
-    res.status(400).json({ error: err.message });
+    const lead = await Lead.create(req.body)
+    res.status(201).json(lead)
+  } catch (error) {
+    res.status(500).json({ message: "Error creating lead", error })
   }
-};
+}
+
+export const getLeads = async (req, res) => {
+  try {
+    const leads = await Lead.find().sort({ createdAt: -1 })
+    res.json(leads)
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching leads", error })
+  }
+}
