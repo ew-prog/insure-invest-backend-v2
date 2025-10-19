@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
 
-import LeadRoutes from "./routes/leadRoutes.js"; // router
+import LeadRoutes from "./routes/LeadRoutes.js"; // router
 
 dotenv.config();
 
