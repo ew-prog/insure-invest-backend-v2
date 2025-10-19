@@ -1,24 +1,26 @@
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
-import LeadRoutes from "./routes/LeadRoutes.js";
 import dotenv from "dotenv";
+
+// Import LeadRoutes correctly relative to server.js
+import LeadRoutes from "./routes/LeadRoutes.js"; // <-- this path is correct if server.js and routes/ are in same folder
 
 dotenv.config();
 
 const app = express();
 
 // Middleware
-app.use(cors()); // Enable CORS globally
+app.use(cors()); // enable CORS globally
 app.use(express.json());
 
 // Routes
 app.use("/api/v1/leads", LeadRoutes);
 
-// MongoDB Connection
+// MongoDB connection
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
-  useUnifiedTopology: true,
+  useUnifiedTopology: true
 })
 .then(() => console.log("MongoDB connected"))
 .catch((err) => console.error("MongoDB connection error:", err));
