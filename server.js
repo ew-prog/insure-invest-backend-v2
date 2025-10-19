@@ -3,15 +3,18 @@ import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
 
-// Import LeadRoutes correctly relative to server.js
-import LeadRoutes from "./routes/LeadRoutes.js"; // <-- this path is correct if server.js and routes/ are in same folder
+import LeadRoutes from "./routes/leadRoutes.js"; // router
 
 dotenv.config();
 
 const app = express();
 
-// Middleware
-app.use(cors()); // enable CORS globally
+// CORS - allow only your live frontend
+app.use(cors({
+  origin: "https://insure-invest-frontend-1.onrender.com"
+}));
+
+// JSON parsing middleware
 app.use(express.json());
 
 // Routes
@@ -23,7 +26,7 @@ mongoose.connect(process.env.MONGO_URI, {
   useUnifiedTopology: true
 })
 .then(() => console.log("MongoDB connected"))
-.catch((err) => console.error("MongoDB connection error:", err));
+.catch(err => console.error("MongoDB connection error:", err));
 
 // Start server
 const PORT = process.env.PORT || 5000;
