@@ -1,9 +1,9 @@
-import express from 'express';
-import { getLeads, createLead } from '../controllers/leadController.js';
+import express from "express"
+import { createLead, getLeads } from "../controllers/leadController.js"
 
-const router = express.Router();
+const router = express.Router()
 
-router.get('/', getLeads);
-router.post('/', createLead);
+router.post("/", createLead)
+router.get("/", getLeads)
 
-export default router;
+export default router
