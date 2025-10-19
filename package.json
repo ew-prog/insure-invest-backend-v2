@@ -1,7 +1,7 @@
 {
   "name": "insure-invest-backend-v2",
   "version": "1.0.0",
-  "description": "Backend for InsureInvest Leads Platform",
+  "description": "Backend for InsureInvest lead generation platform",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -9,11 +9,11 @@
   },
   "dependencies": {
     "cors": "^2.8.5",
-    "dotenv": "^16.0.3",
+    "dotenv": "^16.4.0",
     "express": "^4.18.2",
-    "mongoose": "^7.0.5"
+    "mongoose": "^7.6.1"
   },
   "devDependencies": {
-    "nodemon": "^2.0.22"
+    "nodemon": "^3.1.0"
   }
 }
