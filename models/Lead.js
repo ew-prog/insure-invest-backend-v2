@@ -1,11 +1,11 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose"
 
 const leadSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  email: { type: String, required: true },
-  phone: { type: String, required: true },
-  insuranceCompany: { type: String, required: true },
-  product: { type: String, required: true },
-}, { timestamps: true });
+  name: String,
+  email: String,
+  phone: String,
+  insuranceCompany: String,
+  product: String,
+}, { timestamps: true })
 
-export default mongoose.model('Lead', leadSchema);
+export default mongoose.model("Lead", leadSchema)
