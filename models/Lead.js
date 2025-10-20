@@ -1,14 +1,24 @@
-import mongoose from "mongoose";
+// Simple in-memory storage (replace with DB if needed)
+const leads = [];
 
-const LeadSchema = new mongoose.Schema(
-  {
-    name: { type: String, required: true },
-    email: { type: String, required: true },
-    phone: { type: String, required: true },
-    company: { type: String, required: true },
-    product: { type: String },
-  },
-  { timestamps: true }
-);
+export default class Lead {
+  constructor({ name, email, phone, product, zip }) {
+    this.id = leads.length + 1;
+    this.name = name;
+    this.email = email;
+    this.phone = phone;
+    this.product = product;
+    this.zip = zip;
+    this.createdAt = new Date();
+  }
 
-export default mongoose.model("Lead", LeadSchema);
+  static create(data) {
+    const newLead = new Lead(data);
+    leads.push(newLead);
+    return newLead;
+  }
+
+  static all() {
+    return leads;
+  }
+}
