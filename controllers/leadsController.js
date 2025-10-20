@@ -1,21 +1,26 @@
-// controllers/leadController.js
 import Lead from "../models/Lead.js";
 
-export const createLead = async (req, res) => {
+// Submit a lead
+export const submitLead = (req, res) => {
   try {
-    const lead = new Lead(req.body);
-    await lead.save();
-    res.status(201).json({ message: "Lead created successfully!" });
-  } catch (error) {
-    res.status(500).json({ message: "Error creating lead", error });
+    const { name, email, phone, product, zip } = req.body;
+    if (!name || !email || !phone || !product) {
+      return res.status(400).json({ error: "Missing required fields" });
+    }
+
+    const newLead = Lead.create({ name, email, phone, product, zip });
+    res.status(201).json({ success: true, lead: newLead });
+  } catch (err) {
+    res.status(500).json({ error: "Server error" });
   }
 };
 
-export const getLeads = async (req, res) => {
+// Get all leads
+export const getLeads = (req, res) => {
   try {
-    const leads = await Lead.find().sort({ createdAt: -1 });
-    res.status(200).json(leads);
-  } catch (error) {
-    res.status(500).json({ message: "Error fetching leads", error });
+    const allLeads = Lead.all();
+    res.json({ success: true, leads: allLeads });
+  } catch (err) {
+    res.status(500).json({ error: "Server error" });
   }
 };
