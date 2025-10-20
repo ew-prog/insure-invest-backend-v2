@@ -1,10 +1,9 @@
 import express from "express";
-import { createLead, getLeads } from "../controllers/leadsController.js";
+import { submitLead, getLeads } from "../controllers/leadController.js";
 
 const router = express.Router();
 
-// Routes
-router.post("/", createLead);
-router.get("/", getLeads);
+router.post("/", submitLead);       // POST /api/v1/leads
+router.get("/", getLeads);         // GET /api/v1/leads (for dashboard)
 
 export default router;
